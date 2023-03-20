@@ -49,11 +49,11 @@ df2 = pd.DataFrame(data=array2)
 
 
 def main():
-    im = Image.open("C:\\Users\\Divyanshu\\Desktop\\Kaggle\\IPL_Data_prediction\\Ipl-logo.png")
+
     # Adding Image to web app
 
 
-    st.set_page_config(layout="wide",page_title="IPL Prediction App", page_icon=im)
+    st.set_page_config(layout="wide",page_title="IPL Prediction App")
 
 
 
@@ -96,4 +96,4 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+   main()
