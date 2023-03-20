@@ -7,7 +7,7 @@ import numpy as np
 
 import numpy as np
 import pandas as pd
-from PIL import  Image
+from PIL import Image
 
 app = Flask(__name__)
 
@@ -16,7 +16,8 @@ classifier = pickle.load(pickle_in)
 
 
 def predict(battin_team, bowling_team, venue, target, Runs, Balls_left, Runs_left, Wickets_left, CurrentRR, RequiredRR):
-    prediction = classifier.predict([[battin_team, bowling_team, venue, target, Runs, Balls_left, Runs_left, Wickets_left, CurrentRR, RequiredRR]])
+    prediction = classifier.predict(
+        [[battin_team, bowling_team, venue, target, Runs, Balls_left, Runs_left, Wickets_left, CurrentRR, RequiredRR]])
 
     return prediction
 
@@ -49,27 +50,18 @@ df2 = pd.DataFrame(data=array2)
 
 
 def main():
-
     # Adding Image to web app
 
-
-    st.set_page_config(layout="wide",page_title="IPL Prediction App")
-
-
-
-
+    st.set_page_config(layout="wide", page_title="IPL Prediction App")
 
     st.title("IPL Prediction")
     st.sidebar.title("Team code And Venue code")
     # st.set_page_config(layout="wide")
 
-
     st.sidebar.markdown("Venue code")
     st.sidebar.dataframe(df, height=500, width=500)
     st.sidebar.markdown("Team code")
     st.sidebar.dataframe(df2, height=300, width=500)
-
-
 
     left, right = st.columns(2)
     with left:
@@ -87,13 +79,13 @@ def main():
 
     result = ""
     if st.button("Predict"):
-        result = predict(bat, bol, ven, tar, run,balf,cur, wic, curr, reqr)
-        if result ==1:
-            result ="Winner is Batting team"
+        result = predict(bat, bol, ven, tar, run, balf, cur, wic, curr, reqr)
+        if result == 1:
+            result = "Winner is Batting team"
         else:
             result = "Winnner is Bowling team"
         st.success(str(result))
 
 
 if __name__ == '__main__':
-   main()
+    main()
